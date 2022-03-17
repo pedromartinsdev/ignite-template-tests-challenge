@@ -12,13 +12,14 @@ describe("Authenticate User", () => {
   beforeEach(() => {
     userRepositoryInMemory = new InMemoryUsersRepository();
     authenticateUserUseCase = new AuthenticateUserUseCase(userRepositoryInMemory);
+    createUser = new CreateUserUseCase(userRepositoryInMemory)
   });
 
   it("Should be able to authenticate an user", async () => {
     const user: ICreateUserDTO = {
+      name: "Fulano",
       email: "fulano@gmail.com",
-      password: "password",
-      name: "Fulano"
+      password: "senhasupersecreta123",
     }
     await createUser.execute(user);
 
@@ -28,6 +29,5 @@ describe("Authenticate User", () => {
     })
 
     expect(result).toHaveProperty("token");
-
   });
 });
