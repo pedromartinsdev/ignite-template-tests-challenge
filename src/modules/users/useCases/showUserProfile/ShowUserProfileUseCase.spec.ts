@@ -22,7 +22,6 @@ describe("Authenticate User", () => {
       password: "senhasupersecreta123",
     }
     const result = await createUser.execute(user);
-
     await showUserProfileUseCase.execute(result.id as string)
   });
 });
